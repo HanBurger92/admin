@@ -1,0 +1,26 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: admin
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/hanburger?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: Baohan9922
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+xxl:
+  adminAddress: http://localhost:8080
+  accessToken:
+  executor:
+    address:
+    appName: admin
+    ip:
+    port: 0
+    logPath:
+    logRetentionDays: 15
+
+
+
