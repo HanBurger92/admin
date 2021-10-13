@@ -14,7 +14,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 public class FF14WIKIPageProcessor implements PageProcessor {
 
     // 抓取网站的相关配置
-    private Site site = Site.me().setRetrySleepTime(3).setSleepTime(1000);
+    private Site site = Site.me().setRetrySleepTime(3).setSleepTime(5000);
 
     // 定制爬虫逻辑的核心接口，在该函数编写抽取逻辑
     @Override
