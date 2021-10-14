@@ -18,11 +18,11 @@ import us.codecraft.webmagic.pipeline.JsonFilePipeline;
  */
 @Component
 @Slf4j
-public class FF14CrawlerHandler {
+public class FF14WIKICrawlerHandler {
 
     // FF14 WIKI爬虫启动定时任务
     @XxlJob("FF14WIKICrawlerHandler")
-    public ReturnT<String> FF14WIKICrawlerHandler(String param) throws Exception {
+    public ReturnT<String> FF14WikiExecute(String param) throws Exception {
         Spider.create(new FF14WIKIPageProcessor())
                 .addUrl("https://ff14.huijiwiki.com/wiki/ItemSearch")
                 .addPipeline(new JsonFilePipeline())
@@ -31,14 +31,5 @@ public class FF14CrawlerHandler {
         return ReturnT.SUCCESS;
     }
 
-    // FF14 幻化站爬虫启动定时任务
-    @XxlJob("FF14TransCrawlerHandler")
-    public ReturnT<String> FF14TransCrawlerHandler(String param) throws Exception {
-        Spider.create(new FF14TransPageProcessor())
-                .addUrl("ff14trans")
-                .addPipeline(new JsonFilePipeline())
-                .thread(5)
-                .run();
-        return ReturnT.SUCCESS;
-    }
+
 }
