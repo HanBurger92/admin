@@ -16,8 +16,8 @@ import java.util.List;
  * @author baoh
  * @date 2021/10/13 10:29
  */
-@Slf4j
 @Component
+@Slf4j
 public class FF14WIKIPageProcessor implements PageProcessor {
 
     // 抓取网站的相关配置
@@ -31,22 +31,24 @@ public class FF14WIKIPageProcessor implements PageProcessor {
 
         // 页面内容 <html>...<html/>
         Html html = page.getHtml();
+        System.out.println(html);
 
         // 将物品详细属性页面的链接提取出来
-        log.info("开始获取物品详情页面url");
-        List<String> urls = html.css("div.ff14-item-list--item").links().all();
-        log.info("物品详情页面url获取结束，urls:{}", urls.toString());
+//        log.info("开始获取物品详情页面url");
+        page.putField("urls", html.css("div.item-search-result").links().all());
+        System.out.println(page.getResultItems().get("urls").toString());
+//        log.info("物品详情页面url获取结束，urls:{}", urls.toString());
 
-        // 定义如何抽取页面信息
-        page.putField("physicalDefense", html.css("div.stat-value only-value").toString());
+//        // 定义如何抽取页面信息
+//        page.putField("physicalDefense", html.css("div.stat-value only-value").toString());
 
-        if(page.getResultItems().get("name") == null){
-            //skip this page
-            page.setSkip(true);
-        }
+//        if(page.getResultItems().get("name") == null){
+//            //skip this page
+//            page.setSkip(true);
+//        }
 
         // 从页面发现的后续的url地址来抓取
-        page.addTargetRequests(urls);
+//        page.addTargetRequests(urls);
     }
 
     @Override

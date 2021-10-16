@@ -1,5 +1,6 @@
 package com.hanburger.admin.processor;
 
+import com.hanburger.admin.pipeline.FF14WIKIPipeline;
 import com.hanburger.admin.schdule.DemoCrawlerHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,15 @@ public class PageExtractTest {
         Spider.create(new demoPageProcessor())
                 .addUrl("http://webmagic.io/docs/zh/posts/ch4-basic-page-processor/selectable.html")
 //                .addPipeline(new JsonFilePipeline())
+                .thread(1)
+                .run();
+    }
+
+    @Test
+    public void FF14WIKIPageProcessorTest() throws Exception{
+        Spider.create(new FF14WIKIPageProcessor())
+                .addUrl("https://ff14.huijiwiki.com/wiki/ItemSearch?page=2")
+                .addPipeline(new FF14WIKIPipeline())
                 .thread(1)
                 .run();
     }
